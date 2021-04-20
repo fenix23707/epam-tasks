@@ -5,7 +5,9 @@ import java.util.regex.Pattern;
 public class Word implements PartText {
     private String content;
     public static final String regex =
-            "\\b[a-zA-Z0-9-_]+@\\w+\\.\\w+\\b|\\b[a-zA-Z]+\\b|\\+\\d{3}\\(\\d{2}\\)\\d{3}(-\\d{2}){2}";
+                    "[a-zA-Z0-9-`!.-]+@\\w+\\.\\w+"//почта
+                    +"|\\+\\d{3}\\(\\d{2}\\)\\d{3}(-\\d{2}){2}"//телефон
+                    +"|[^\\s\\t\\n,.:;!()\\[\\]?]+";//слово
 
     public Word(String word) {
         setContent(word);

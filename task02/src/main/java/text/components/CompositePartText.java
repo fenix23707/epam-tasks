@@ -5,13 +5,8 @@ import java.util.ArrayList;
 public class CompositePartText implements PartText{
     private ArrayList<PartText> components = new ArrayList<>();
 
-    //TODO: сделать нормальные add и remove
     public void addComponent(PartText partText) {
         components.add(partText);
-    }
-
-    public void removeComponent(PartText partText) {
-        components.remove(partText);
     }
 
     @Override

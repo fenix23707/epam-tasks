@@ -9,14 +9,14 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextOperations {
+public class Text {
     private CompositePartText text;
 
     public CompositePartText getText() {
         return text;
     }
 
-    public TextOperations(String str) {
+    public Text(String str) {
         text = makeParagraph(str);
     }
 
@@ -42,7 +42,7 @@ public class TextOperations {
             sentences.add(sentence);
             String partText;
             do {
-                partText = matcher.group()/*text.substring(matcher.start(), matcher.end())*/;
+                partText = matcher.group();
                 if (Word.isWord(partText)) {
                     sentence.addComponent(new Word(partText));
                 } else if (PunctuationMark.isPunctuationMark(partText)) {

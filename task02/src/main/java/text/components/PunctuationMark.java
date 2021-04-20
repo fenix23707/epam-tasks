@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class PunctuationMark implements PartText{
     private String content;
     public static final String regexEnd = "\\.+|!+|\\?+ ";
-    public static final String regex = "[,;:\\-()\"]|"+regexEnd;
+    public static final String regex = "[,;:\\-()\"{}\\[\\]]|"+regexEnd;
     public PunctuationMark(String punctuationMark) {
         setContent(punctuationMark);
     }

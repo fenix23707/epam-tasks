@@ -1,4 +1,4 @@
-import text.TextOperations;
+import text.Text;
 import text.components.PartText;
 import text.components.Word;
 
@@ -18,22 +18,23 @@ public class Runner {
         return result;
     }
     public static void main(String[] args) {
-        String text = "Lorem Ipsum, is simply LoremLoremLoremL+375(43)123-34-32orem dummy Lorem ] Lorem Lorem \n"
+        String str = "Lorem Ipsum, is simply LoremLoremLoremL +375(43)123-34-32orem dummy Lorem ] Lorem Lorem \n"
                 + "Lorem Ipsum, ,isfa@mail.ru simply dummy text, of the printing and typesetting industry. \n"
-                + "Lorem Ipsum, is si+375(43)123-34-32mply dummy text, of the printing and typesetting industry. \n";
+                + "Lorem Ipsum, is si +375(43)123-34-32mply dummy text, of the printing and typesetting industry. \n";
 
-        TextOperations textOperations = new TextOperations(text);
+        Text text = new Text(str);
 
         Set<Word> words = new HashSet<>();
-        words.add(new Word("fa@mail.ru"));
+        words.add(new Word("isfa@mail.ru"));
         words.add(new Word("lorem"));
         words.add(new Word("Ipsum"));
 
         words.add(new Word("+375(43)123-34-32"));
         words.add(new Word("fafsa@mail.ru"));
-
-        for (Map.Entry<PartText,Integer> partText: sortByValue(textOperations.findNumberOfOccurForEach(words)).entrySet()) {
+        System.out.println();
+        for (Map.Entry<PartText,Integer> partText: sortByValue(text.findNumberOfOccurForEach(words)).entrySet()) {
             System.out.println(partText.getKey() + " " + partText.getValue());
         }
+        System.out.println(text.getText());
     }
 }
