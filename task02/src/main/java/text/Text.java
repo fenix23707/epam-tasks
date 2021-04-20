@@ -56,10 +56,17 @@ public class Text {
         return sentences;
     }
 
-    public Map<PartText,Integer> findNumberOfOccurForEach(Set<? extends PartText> textParts) {
-        Map<PartText, Integer> mapPartText = new HashMap<>(textParts.size());
-        for (PartText partText: textParts) {
-            mapPartText.put(partText, text.getNumberOfOccurrences(partText));
+    public Map<Integer,ArrayList<PartText>> findNumberOfOccurForEach(Set<? extends PartText> setTextParts) {
+        Map<Integer, ArrayList<PartText>> mapPartText = new TreeMap<>();
+        for (PartText partText: setTextParts) {
+            int numberOfOccur = text.getNumberOfOccurrences(partText);
+            if (mapPartText.containsKey(numberOfOccur)) {
+                mapPartText.get(numberOfOccur).add(partText);
+            } else {
+                ArrayList<PartText> identicalPartsOfText = new ArrayList<>();
+                identicalPartsOfText.add(partText);
+                mapPartText.put(numberOfOccur,identicalPartsOfText);
+            }
         }
         return mapPartText;
     }

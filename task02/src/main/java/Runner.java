@@ -5,22 +5,10 @@ import text.components.Word;
 import java.util.*;
 
 public class Runner {
-    //TODO: найти нормальный споособ сортировать
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
-        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-
-        Map<K, V> result = new LinkedHashMap<>();
-        for (Map.Entry<K, V> entry : list) {
-            result.put(entry.getKey(), entry.getValue());
-        }
-
-        return result;
-    }
     public static void main(String[] args) {
-        String str = "Lorem Ipsum, is simply LoremLoremLoremL +375(43)123-34-32orem dummy Lorem ] Lorem Lorem \n"
-                + "Lorem Ipsum, ,isfa@mail.ru simply dummy text, of the printing and typesetting industry. \n"
-                + "Lorem Ipsum, is si +375(43)123-34-32mply dummy text, of the printing and typesetting industry. \n";
+        String str = "Lorem Ipsum, is  simply LoremLoremLoremL: +375(43)123-34-32orem dummy Lorem Lorem Lorem "
+                + "Lorem Ipsum ,isfa@mail.ru simply dummy text, of the printing and typesetting industry. "
+                + "Lorem Ipsum, is is +375(43)123-34-32 dummy text, of the printing and typesetting industry. ";
 
         Text text = new Text(str);
 
@@ -28,12 +16,17 @@ public class Runner {
         words.add(new Word("isfa@mail.ru"));
         words.add(new Word("lorem"));
         words.add(new Word("Ipsum"));
-
         words.add(new Word("+375(43)123-34-32"));
         words.add(new Word("fafsa@mail.ru"));
-        System.out.println();
-        for (Map.Entry<PartText,Integer> partText: sortByValue(text.findNumberOfOccurForEach(words)).entrySet()) {
-            System.out.println(partText.getKey() + " " + partText.getValue());
+        words.add(new Word("is"));
+
+
+        Map<Integer,ArrayList<PartText>> mapPartsText = text.findNumberOfOccurForEach(words);
+
+        for (Map.Entry<Integer,ArrayList<PartText>> identicalPartsOfText:mapPartsText.entrySet()) {
+            for (PartText partText: identicalPartsOfText.getValue()) {
+                System.out.println(identicalPartsOfText.getKey() + " " + partText);
+            }
         }
         System.out.println(text.getText());
     }

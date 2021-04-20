@@ -31,7 +31,6 @@ public class CompositePartTextTest {
     }
     @Test
     public void getNumberOfOccurrencesTestForSentence() {
-
         assertEquals(3,sentence.getNumberOfOccurrences(new Word("yes")));
     }
 
@@ -43,18 +42,6 @@ public class CompositePartTextTest {
         paragraph.addComponent(sentence);
 
         assertEquals(9,paragraph.getNumberOfOccurrences(new Word("yes")));
-    }
-
-    @Test
-    public void getNumberOfOccurrencesTestForParagraphAndRemove() {
-        CompositePartText paragraph = new CompositePartText();
-        paragraph.addComponent(sentence);
-        paragraph.addComponent(sentence);
-        paragraph.addComponent(sentence);
-
-        paragraph.removeComponent(sentence);
-
-        assertEquals(6,paragraph.getNumberOfOccurrences(new Word("yes")));
     }
 
     @Test
