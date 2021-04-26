@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.epam.by/task03/candies"
+    xmlns:tns="http://www.epam.by/task03/candies" elementFormDefault="qualified">
+
+    <element name="candies">
+
+        <complexType>
+            <sequence>
+                <element name="candy" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="name" type="string"/>
+                            <element name="energy" type="nonNegativeInteger"/>
+                            <element name="type" type="tns:candyType"/>
+                            <element name="ingredients" type="tns:ingredientsType"/>
+                            <element name="value" type="tns:valueType"/>
+                            <element name="production" type="string"/>
+                        </sequence>
+                        <attribute name="id" type="string" use="required"/>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <simpleType name="candyType">
+        <restriction base="string">
+            <enumeration value="CARAMEL"/>
+            <enumeration value="IRIS"/>
+            <enumeration value="CHOCOLATE"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="valueType">
+        <attribute name="protein" type="tns:limitedFloat" use="required"/>
+        <attribute name="fats" type="tns:limitedFloat" use="required"/>
+        <attribute name="carbohydrates" type="tns:limitedFloat" use="required"/>
+    </complexType>
+
+    <complexType name="ingredientsType">
+        <all>
+            <element name="water" type="tns:limitedFloat"/>
+            <element name="sugar" type="tns:limitedFloat"/>
+            <element name="fructose" type="tns:limitedFloat"/>
+            <element name="chocolateType" type="string" minOccurs="0"/>
+            <element name="vanillin" type="tns:limitedFloat"/>
+        </all>
+    </complexType>
+    
+    <simpleType name="limitedFloat">
+        <restriction base="float">
+            <minInclusive value="0"/>
+        </restriction>
+    </simpleType>
+
+</schema>

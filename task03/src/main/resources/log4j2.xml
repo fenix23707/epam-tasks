@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_ERR">
+            <PatternLayout pattern="%date{dd.MM.yyyy, HH:mm.ss} %5level [%thread] %class.%method():%line%n%msg%n%exception%n"/>
+        </Console>
+        <File name="File" fileName="src\main\resources\app.log" append="true">
+            <PatternLayout pattern="%date{dd.MM.yyyy, HH:mm.ss} %5level [%thread] %class.%method():%line%n%msg%n%exception%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>

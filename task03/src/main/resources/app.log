@@ -1,0 +1,15 @@
+25.04.2021, 17:22.03  INFO [main] candy.xml.CandyXmlValidator.validate():44
+validate start
+
+25.04.2021, 17:22.03  INFO [main] candy.xml.CandyXmlValidator.validate():51
+validate end
+
+25.04.2021, 17:22.59  INFO [main] candy.xml.CandyXmlValidator.validate():44
+validate start
+
+25.04.2021, 17:22.59  INFO [main] candy.xml.CandyXmlValidator.validate():51
+validate end
+
+26.04.2021, 15:38.54 ERROR [main] candy.xml.CandyXmlValidator.error():35
+org.xml.sax.SAXParseException; systemId: file:///C:/University/epam-tasks/task03/src/main/resources/candies.xml; lineNumber: 6; columnNumber: 16; cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.epam.by/task03/candies":nafme}'. One of '{"http://www.epam.by/task03/candies":name}' is expected.
+
