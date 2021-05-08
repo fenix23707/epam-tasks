@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <candies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://www.epam.by/task03/candies" xsi:schemaLocation="http://www.epam.by/task03/candies candies.xsd">
-
+1;truffle;564;CHOCOLATE;4.9
     <candy id="1">
         <name>truffle</name>
         <energy>564</energy>

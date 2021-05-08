@@ -1,1 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?><candies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.epam.by/task03/candies" xsi:schemaLocation="http://www.epam.by/task03/candies candies.xsd"><candy id="3"><name>Bob Snail</name><energy>132</energy><type>CARAMEL</type><ingredients><vanillin>7.8</vanillin><water>3.1</water><sugar>1.3</sugar><fructose>6.3</fructose></ingredients><value protein="1.2" fats="1.0" carbohydrates="29.6"></value><production>Bob Snail</production></candy><candy id="2"><name>Аленка</name><energy>550</energy><type>IRIS</type><ingredients><vanillin>3</vanillin><fructose>6.1</fructose><water>3.2</water><sugar>1.2</sugar></ingredients><value protein="6.0" fats="33.0" carbohydrates="56.0"></value><production>Spartak</production></candy><candy id="1"><name>truffle</name><energy>564</energy><type>CHOCOLATE</type><ingredients><fructose>0</fructose><sugar>0</sugar><water>4.9</water><chocolateType>bitter</chocolateType><vanillin>0</vanillin></ingredients><value protein="4.9" fats="38.1" carbohydrates="50.3"></value><production>Sorceress</production></candy></candies>
+<?xml version="1.0" encoding="UTF-8"?>
+<candies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.epam.by/task03/candies"
+         xsi:schemaLocation="http://www.epam.by/task03/candies candies.xsd">
+    <candy id="3">
+        <name>Bob Snail</name>
+        <energy>132</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <vanillin>7.8</vanillin>
+            <water>3.1</water>
+            <sugar>1.3</sugar>
+            <fructose>6.3</fructose>
+        </ingredients>
+        <value protein="1.2" fats="1.0" carbohydrates="29.6"></value>
+        <production>Bob Snail</production>
+    </candy>
+    <candy id="2">
+        <name>Аленка</name>
+        <energy>550</energy>
+        <type>IRIS</type>
+        <ingredients>
+            <vanillin>3</vanillin>
+            <fructose>6.1</fructose>
+            <water>3.2</water>
+            <sugar>1.2</sugar>
+        </ingredients>
+        <value protein="6.0" fats="33.0" carbohydrates="56.0"></value>
+        <production>Spartak</production>
+    </candy>
+    <candy id="1">
+        <name>truffle</name>
+        <energy>564</energy>
+        <type>CHOCOLATE</type>
+        <ingredients>
+            <fructose>0</fructose>
+            <sugar>0</sugar>
+            <water>4.9</water>
+            <chocolateType>bitter</chocolateType>
+            <vanillin>0</vanillin>
+        </ingredients>
+        <value protein="4.9" fats="38.1" carbohydrates="50.3"></value>
+        <production>Sorceress</production>
+    </candy>
+</candies>
