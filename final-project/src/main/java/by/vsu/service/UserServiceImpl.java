@@ -32,6 +32,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    //TODO: не тестировал
+    @Override
+    public User findById(Long id) throws ServiceException {
+        try {
+            return userDao.read(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     //TODO: если передать пользовотеля с несуществующим id то он не изменяется в БД и нам уведомления не прихоодит нужно исправить это
     @Override
     public void save(User user) throws ServiceException {
@@ -43,6 +53,15 @@ public class UserServiceImpl implements UserService {
             } else {
                 userDao.create(user);
             }
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void delete(Long id) throws ServiceException {
+        try {
+            userDao.delete(id);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

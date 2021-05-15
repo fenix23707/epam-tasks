@@ -19,10 +19,25 @@ public interface UserService {
     List<User> findAll() throws ServiceException;
 
     /**
+     * Находит пользовотеля в БД по id
+     * @param id id пользовотеля, которого нужно найти в БД
+     * @return Объект User или null, если пользовотеля с таким id нету в БД
+     * @throws ServiceException
+     */
+    User findById(Long id) throws ServiceException;
+
+    /**
      * Сохраняет или обновляет существующего пользователя в БД
      *
      * @param user пользовотель которого надо сохранить/обновить
      * @throws ServiceException
      */
     void save(User user) throws ServiceException;
+
+    /**
+     * Удаляет пользователя из БД
+     * @param id пользвателя, которого надо удалить
+     * @throws ServiceException
+     */
+    void delete(Long id ) throws ServiceException;
 }

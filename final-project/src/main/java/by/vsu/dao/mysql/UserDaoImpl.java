@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
-            statement.setInt(3,user.getRole().ordinal());
+            statement.setInt(3, user.getRole().ordinal());
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -42,39 +42,46 @@ public class UserDaoImpl implements UserDao {
         } finally {
             try {
                 resultSet.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
             try {
                 statement.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
 
+    //TODO:протестировать
     @Override
     public User read(Long id) throws DaoException {
-        String sql = "SELECT `login`, `password`, `role`, FROM `user` WHERE `id` = ?";
+        String sql = "SELECT `login`, `password`, `role` FROM `user` WHERE `id` = ?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             User user = null;
             statement = connection.prepareStatement(sql);
-            statement.setLong(1,id);
+            statement.setLong(1, id);
             resultSet = statement.executeQuery();
-
-            user.setId(id);
-            user.setLogin(resultSet.getString("login"));
-            user.setPassword(resultSet.getString("password"));
-            user.setRole(Role.values()[resultSet.getInt("role")]);
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(id);
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
+                user.setRole(Role.values()[resultSet.getInt("role")]);
+            }
 
             return user;
         } catch (SQLException ex) {
             throw new DaoException(ex);
         } finally {
-            try{
+            try {
                 resultSet.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
             try {
                 statement.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -83,9 +90,9 @@ public class UserDaoImpl implements UserDao {
         String sql = "SELECT `id`, `login`, `password`, `role`  FROM `user`";
         Statement statement = null;
         ResultSet resultSet = null;
-        try{
+        try {
             statement = connection.createStatement();
-            resultSet =  statement.executeQuery(sql);
+            resultSet = statement.executeQuery(sql);
             List<User> users = new ArrayList<>();
             while (resultSet.next()) {
                 User user = new User();
@@ -101,21 +108,23 @@ public class UserDaoImpl implements UserDao {
         } finally {
             try {
                 resultSet.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
             try {
                 statement.close();
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
 
     @Override
     public void update(User user) throws DaoException {
         String sql = "UPDATE `user` SET `login` = ?, `password` = ?, `role` = ? WHERE `id` = ?";
-        try(PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1,user.getLogin());
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
-            statement.setInt(3,user.getRole().ordinal());
-            statement.setLong(4,user.getId());
+            statement.setInt(3, user.getRole().ordinal());
+            statement.setLong(4, user.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             throw new DaoException(ex);
@@ -126,8 +135,8 @@ public class UserDaoImpl implements UserDao {
     public void delete(Long id) throws DaoException {
         String sql = "DELETE FROM `user` WHERE `id` = ?";
 
-        try(PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setLong(1,id);
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
             throw new DaoException(ex);

@@ -1,7 +1,75 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0"
+         metadata-complete="true">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+
+    <display-name>Жилищно-коммунальные услуги</display-name>
+<!--
+    <request-character-encoding>UTF-8</request-character-encoding>
+-->
+
+
+    <!-- Define servlets-->
+
+    <servlet>
+        <servlet-name>UserListServlet</servlet-name>
+        <servlet-class>by.vsu.web.user.UserListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListServlet</servlet-name>
+        <url-pattern>/user/list.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserEditServlet</servlet-name>
+        <servlet-class>by.vsu.web.user.UserEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserEditServlet</servlet-name>
+        <url-pattern>/user/edit.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserSaveServlet</servlet-name>
+        <servlet-class>by.vsu.web.user.UserSaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserSaveServlet</servlet-name>
+        <url-pattern>/user/save.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <servlet-class>by.vsu.web.user.UserDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <url-pattern>/user/delete.html</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- Define filters-->
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>by.vsu.web.filters.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>"encoding"</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 </web-app>
