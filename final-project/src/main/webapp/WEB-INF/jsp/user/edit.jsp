@@ -24,7 +24,11 @@
         </div>
         <div>
             password:
-            <input type="text" name="password" value="${user.password}">
+            <input type="password" name="password">
+        </div>
+        <div>
+            name:
+            <input type="text" name="name" value="${user.name}">
         </div>
         <div>
             role:
@@ -44,6 +48,5 @@
         </div>
         <button type="submit">Сохранить</button>
         <c:url var="userDeleteUrl" value="/user/delete.html"/>
-        <button formaction="${userDeleteUrl}" formmethod="post">Удалить</button>
-    </form>
+        <button formaction="${userDeleteUrl}" formmethod="get">Удалить</button>
 </u:page>

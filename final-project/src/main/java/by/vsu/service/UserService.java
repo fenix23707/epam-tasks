@@ -1,6 +1,7 @@
 package by.vsu.service;
 
 import by.vsu.entities.User;
+import by.vsu.service.exception.ServiceException;
 
 import java.util.List;
 
@@ -27,9 +28,19 @@ public interface UserService {
     User findById(Long id) throws ServiceException;
 
     /**
-     * Сохраняет или обновляет существующего пользователя в БД
+     * По пееданным login и password получает пользователя
+     * @param login
+     * @param password
+     * @return пользователя или null, если нету пользовотеля с таким
+     * login и password
+     * @throws ServiceException
+     */
+    User login(String login, String password) throws ServiceException;
+
+    /**
+     * Создает или обновляет существующего пользователя в БД
      *
-     * @param user пользовотель которого надо сохранить/обновить
+     * @param user пользовотель которого надо создать/обновить
      * @throws ServiceException
      */
     void save(User user) throws ServiceException;
@@ -37,7 +48,8 @@ public interface UserService {
     /**
      * Удаляет пользователя из БД
      * @param id пользвателя, которого надо удалить
+     * @return true, если объект с id был удален
      * @throws ServiceException
      */
-    void delete(Long id ) throws ServiceException;
+    boolean delete(Long id ) throws ServiceException;
 }

@@ -3,6 +3,7 @@ import candy.comparators.EnergyComparator;
 import candy.xml.CandyXmlReader;
 import candy.xml.CandyXmlValidator;
 import candy.xml.CandyXmlWriter;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +15,7 @@ public class App {
 
     public static void main( String[] args ) {
         CandyXmlValidator validator =  new CandyXmlValidator();
+        LogManager.getLogger().debug("start");
         try {
             String xmlFileName = "src\\main\\resources\\candies.xml";
             if (validator.validate(xmlFileName)) {

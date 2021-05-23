@@ -26,7 +26,7 @@ public final class ConnectionPool {
 
     private  String password;
 
-    private int maxSize;
+    private int maxSize = 1;
 
     private Queue<Connection> freeConnections = new ConcurrentLinkedDeque<>();
 

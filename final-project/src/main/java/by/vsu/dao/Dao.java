@@ -33,6 +33,7 @@ public interface Dao <T extends Entity>{
      * Обновляет данные по переданному объекту в БД
      *
      * @param entity объект данные которого надо обновить в БД
+     * @return true если картеж с id обновлен в БД
      * @throws DaoException
      */
     void update(T entity) throws DaoException;
@@ -41,7 +42,8 @@ public interface Dao <T extends Entity>{
      * Удаляет объект по первичному ключу из БД.
      *
      * @param id первичный ключ объекта, который надо удалить из БД
+     * @return true если картеж с переданным id удален из БД
      * @throws DaoException
      */
-    void delete(Long id) throws DaoException;
+    boolean delete(Long id) throws DaoException;
 }
