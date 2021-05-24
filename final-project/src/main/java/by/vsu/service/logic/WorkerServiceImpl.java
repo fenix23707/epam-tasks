@@ -4,6 +4,7 @@ import by.vsu.dao.*;
 import by.vsu.entities.*;
 import by.vsu.service.BaseService;
 import by.vsu.service.WorkerService;
+import by.vsu.service.exception.LoginAlreadyExistException;
 import by.vsu.service.exception.ServiceException;
 import by.vsu.service.exception.UserNotExistException;
 
@@ -151,6 +152,12 @@ public class WorkerServiceImpl extends BaseService implements WorkerService {
     public void save(Worker worker) throws ServiceException {
         try {
             getTransaction().start();
+            if (userDao.isLoginAlreadyExist(worker.getLogin())) {
+                try {
+                    getTransaction().commit();
+                } catch (ServiceException ex) { }
+                throw new LoginAlreadyExistException();
+            }
             if (worker.getId() != null) {
                 User user = userDao.readByIdAndRole(worker.getId(), Role.WORKER);
                 if (user != null) {

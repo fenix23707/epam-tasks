@@ -8,6 +8,7 @@ import by.vsu.entities.Tenant;
 import by.vsu.entities.User;
 import by.vsu.service.BaseService;
 import by.vsu.service.TenantService;
+import by.vsu.service.exception.LoginAlreadyExistException;
 import by.vsu.service.exception.ServiceException;
 import by.vsu.service.exception.UserNotExistException;
 
@@ -80,6 +81,12 @@ public class TenantServiceImpl extends BaseService implements TenantService {
     public void save(Tenant tenant) throws ServiceException {
         try {
             getTransaction().start();
+            if (userDao.isLoginAlreadyExist(tenant.getLogin())) {
+                try {
+                    getTransaction().commit();
+                } catch (ServiceException ex) { }
+                throw new LoginAlreadyExistException();
+            }
             if (tenant.getId() != null) {
                 User user = userDao.readByIdAndRole(tenant.getId(), Role.TENANT);
                 if (user != null) {

@@ -47,7 +47,7 @@
                             <form action="${requestChangeStatusUrl}" method="get">
                                 <input type="hidden" name="request_id" value="${request.id}">
                                 <c:choose>
-                                    <c:when test="${request.status eq RequestStatus.COMPLETED}">
+                                    <c:when test="${request.status eq RequestStatus.COMPLETED.name}">
                                         <c:remove var="disabled"/>
                                     </c:when>
                                     <c:otherwise>

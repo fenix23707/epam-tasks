@@ -5,6 +5,7 @@ import by.vsu.controller.Forward;
 import by.vsu.factories.ServiceFactoryException;
 import by.vsu.entities.Dispatcher;
 import by.vsu.entities.Role;
+import by.vsu.service.exception.LoginAlreadyExistException;
 import by.vsu.service.exception.ServiceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,9 +21,9 @@ import java.io.IOException;
  * Объект этого класса создается когда пользователь переходит
  * на старницу с адресом: /dispatcher/save.html
  *
+ * @author Kovzov Vladislav
  * @see Action
  * @see by.vsu.controller.ActionFactory
- * @author Kovzov Vladislav
  */
 public class DispatcherSaveAction extends Action {
     @Override
@@ -51,6 +52,8 @@ public class DispatcherSaveAction extends Action {
             dispatcher.setRole(Role.DISPATCHER);
             try {
                 getServiceFactory().getDispatcherService().save(dispatcher);
+            } catch (LoginAlreadyExistException e) {
+                msg = "Такой логин уже существует";
             } catch (ServiceFactoryException | ServiceException e) {
                 throw new ServletException(e);
             }

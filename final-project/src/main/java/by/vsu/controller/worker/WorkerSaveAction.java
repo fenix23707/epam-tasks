@@ -6,6 +6,7 @@ import by.vsu.factories.ServiceFactoryException;
 import by.vsu.entities.Role;
 import by.vsu.entities.Specialization;
 import by.vsu.entities.Worker;
+import by.vsu.service.exception.LoginAlreadyExistException;
 import by.vsu.service.exception.ServiceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,18 +16,18 @@ import java.io.IOException;
 
 /**
  * Получает данные:
- *  - login
- *  - password
- *  - name
- *  - specialization
- *  - и если было редактирование существующего worker, то еще id
- *  Проверяет их на корректность, создает объект класса Worker и сохраняет его.
+ * - login
+ * - password
+ * - name
+ * - specialization
+ * - и если было редактирование существующего worker, то еще id
+ * Проверяет их на корректность, создает объект класса Worker и сохраняет его.
  * Объект этого класса создается когда пользователь переходит
  * на старницу с адресом: /worker/save.html
  *
+ * @author Kovzov Vladislav
  * @see Action
  * @see by.vsu.controller.ActionFactory
- * @author Kovzov Vladislav
  */
 public class WorkerSaveAction extends Action {
     @Override
@@ -57,6 +58,8 @@ public class WorkerSaveAction extends Action {
             worker.setSpecialization(Specialization.valueOf(spec));
             try {
                 getServiceFactory().getWorkerService().save(worker);
+            } catch (LoginAlreadyExistException e) {
+                msg = "Такой логин уже существует";
             } catch (NullPointerException | IllegalArgumentException e) {
                 return new Forward(404);
             } catch (ServiceFactoryException | ServiceException e) {

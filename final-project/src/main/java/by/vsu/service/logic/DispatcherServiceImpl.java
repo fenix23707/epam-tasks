@@ -8,6 +8,7 @@ import by.vsu.entities.Role;
 import by.vsu.entities.User;
 import by.vsu.service.BaseService;
 import by.vsu.service.DispatcherService;
+import by.vsu.service.exception.LoginAlreadyExistException;
 import by.vsu.service.exception.ServiceException;
 import by.vsu.service.exception.UserNotExistException;
 
@@ -76,6 +77,12 @@ public class DispatcherServiceImpl extends BaseService implements DispatcherServ
     public void save(Dispatcher dispatcher) throws ServiceException {
         try {
             getTransaction().start();
+            if (userDao.isLoginAlreadyExist(dispatcher.getLogin())) {
+                try {
+                    getTransaction().commit();
+                } catch (ServiceException ex) { }
+                throw new LoginAlreadyExistException();
+            }
             if (dispatcher.getId() != null) {
                 User user = userDao.readByIdAndRole(dispatcher.getId(),
                         Role.DISPATCHER);

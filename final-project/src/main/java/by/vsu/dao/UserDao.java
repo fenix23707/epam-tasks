@@ -47,6 +47,14 @@ public interface UserDao extends Dao<User> {
     User readByIdAndRole(Long id, Role role, boolean active) throws DaoException;
 
     /**
+     * Проверяет существует ли такой login в БД
+     * @param login который нужно проверить
+     * @return true если такой login существует, в противном случае false.
+     * @throws DaoException
+     */
+    boolean isLoginAlreadyExist(String login) throws DaoException;
+
+    /**
      * Изменяет статус аккаунта.
      * @param id статус какого аккаунта надо изменить.
      * @param active какой статус поставить

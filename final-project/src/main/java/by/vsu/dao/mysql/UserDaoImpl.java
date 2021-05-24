@@ -238,6 +238,33 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    //TODO: протестировать
+    @Override
+    public boolean isLoginAlreadyExist(String login) throws DaoException {
+        String sql = "SELECT COUNT(*) AS `count` FROM `user` WHERE `login` = ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, login);
+            resultSet = statement.executeQuery();
+            boolean result = true;
+            if (resultSet.next()) {
+                result = resultSet.getBoolean("count");
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            try {
+                resultSet.close();
+            } catch (Exception e ) {}
+            try {
+                statement.close();
+            } catch (Exception e) {}
+        }
+    }
+
     @Override
     public void update(User user) throws DaoException {
         String sql = "UPDATE `user` SET `login` = ?, `password` = ?, `name` = ?, `role` = ?, `is_active` = ? WHERE `id` = ?";
