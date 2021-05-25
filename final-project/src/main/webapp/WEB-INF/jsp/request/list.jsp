@@ -41,13 +41,13 @@
 
                         <td>${request.description}</td>
                         <td>${request.startDay}</td>
-                        <td style="background: ${color};">${request.status}</td>
+                        <td style="background: ${color};">${request.status.name}</td>
                         <td>
                             <c:url var="requestChangeStatusUrl" value="/request/change_status.html"/>
                             <form action="${requestChangeStatusUrl}" method="get">
                                 <input type="hidden" name="request_id" value="${request.id}">
                                 <c:choose>
-                                    <c:when test="${request.status eq RequestStatus.COMPLETED.name}">
+                                    <c:when test="${request.status eq RequestStatus.COMPLETED}">
                                         <c:remove var="disabled"/>
                                     </c:when>
                                     <c:otherwise>

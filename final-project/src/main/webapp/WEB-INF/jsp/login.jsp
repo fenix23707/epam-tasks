@@ -11,7 +11,7 @@
         </div>
         <div>
             password:
-            <input type="text" name="password" value="${user.password}">
+            <input type="password" name="password" value="${user.password}">
         </div>
 
         <button type="submit">Войти</button>
