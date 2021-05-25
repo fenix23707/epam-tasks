@@ -1,0 +1,1 @@
+CREATE DATABASE `housing_and_utilities_db` DEFAULT CHARACTER SET utf8;
